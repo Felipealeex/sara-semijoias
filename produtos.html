@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Produtos — Sara Semijoias</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Alex+Brush&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink: #241a17;
+    --cream: #f8efe6;
+    --rose: #e2a97c;
+    --rose-deep: #c07c52;
+    --dark-btn: #241a17;
+    --panel: #2c1f1b;
+    --panel-2: #33231e;
+    --panel-3: #1f1613;
+    --line: rgba(248,239,230,0.14);
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  html,body{ width:100%; min-height:100vh; font-family:'Montserrat', sans-serif; color:var(--cream); background:var(--panel-3); }
+  img{ max-width:100%; display:block; }
+  button, input{ font-family:inherit; }
+  a{ color:inherit; }
+  ::selection{ background:var(--rose); color:var(--ink); }
+
+  /* ============ HEADER (versão compacta, para páginas internas) ============ */
+  header.site-header{
+    position:sticky; top:0; z-index:40;
+    display:flex; align-items:center; justify-content:space-between; gap:1rem;
+    padding:1.1rem clamp(20px,5vw,64px);
+    background:rgba(36,26,23,0.86);
+    -webkit-backdrop-filter:blur(14px); backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  .logo{ display:flex; flex-direction:column; line-height:1; flex-shrink:0; }
+  .logo .word{ font-family:'Alex Brush', cursive; font-size:1.9rem; color:var(--cream); display:inline-flex; align-items:flex-start; gap:2px; }
+  .logo .word .heart{ font-family:'Playfair Display', serif; font-size:0.66rem; margin-top:2px; }
+  .logo .sub{ font-size:0.54rem; letter-spacing:0.32em; color:var(--cream); opacity:0.85; margin-top:2px; margin-left:2px; }
+
+  nav.main-nav{ display:flex; gap:2rem; }
+  nav.main-nav a{ color:var(--cream); text-decoration:none; font-size:0.86rem; font-weight:500; padding-bottom:6px; position:relative; opacity:0.85; white-space:nowrap; transition:opacity .2s ease; }
+  nav.main-nav a:hover{ opacity:1; }
+  nav.main-nav a.active{ opacity:1; }
+  nav.main-nav a.active::after{ content:""; position:absolute; left:0; right:0; bottom:0; height:2px; background:var(--rose); border-radius:2px; }
+
+  .header-actions{ display:flex; align-items:center; gap:1rem; flex-shrink:0; }
+  .icon-btn{ background:none; border:none; cursor:pointer; color:var(--cream); display:flex; align-items:center; justify-content:center; position:relative; opacity:0.9; padding:4px; }
+  .icon-btn:hover{ opacity:1; }
+  .icon-btn svg{ width:17px; height:17px; }
+  .badge{ position:absolute; top:-4px; right:-6px; width:14px; height:14px; border-radius:50%; background:var(--rose); color:var(--dark-btn); font-size:0.56rem; font-weight:700; display:flex; align-items:center; justify-content:center; }
+  .btn-primary{ background:var(--cream); color:var(--dark-btn); border:none; border-radius:999px; padding:0.7rem 1.25rem; font-size:0.78rem; font-weight:600; display:inline-flex; align-items:center; gap:0.5rem; cursor:pointer; white-space:nowrap; transition:transform .2s ease, background .2s ease; }
+  .btn-primary:hover{ transform:translateY(-1px); background:#fff; }
+
+  .nav-toggle{ display:none; background:rgba(248,239,230,0.06); border:1px solid var(--line); border-radius:8px; width:36px; height:36px; align-items:center; justify-content:center; color:var(--cream); cursor:pointer; flex-shrink:0; }
+  .nav-toggle svg{ width:17px; height:17px; }
+
+  .mobile-panel{
+    display:none; position:absolute; z-index:39; top:100%; left:0; right:0;
+    background:rgba(28,19,16,0.96);
+    -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);
+    padding:0.4rem; flex-direction:column; overflow:hidden;
+  }
+  .mobile-panel.open{ display:flex; }
+  .mobile-panel a{ color:var(--cream); text-decoration:none; font-size:0.94rem; padding:0.85rem 1rem; border-radius:10px; font-weight:500; }
+  .mobile-panel a.active{ background:rgba(248,239,230,0.08); color:var(--rose); }
+
+  @media (max-width: 900px){
+    nav.main-nav{ display:none; }
+    .nav-toggle{ display:flex; }
+    .btn-primary .label{ display:none; }
+    .btn-primary{ padding:0.65rem; }
+  }
+
+  /* ============ PAGE INTRO ============ */
+  .intro{
+    padding:clamp(40px,7vw,68px) clamp(20px,6vw,64px) clamp(28px,5vw,40px);
+    background:linear-gradient(180deg, var(--panel-3) 0%, var(--panel-3) 100%);
+    border-bottom:1px solid var(--line);
+  }
+  .intro-inner{ max-width:1280px; margin:0 auto; }
+  .eyebrow{ font-size:0.68rem; letter-spacing:0.28em; font-weight:600; color:var(--rose); margin-bottom:0.7rem; }
+  .intro h1{ font-family:'Playfair Display', serif; font-weight:500; color:var(--cream); font-size:clamp(2rem, 4.4vw, 2.9rem); line-height:1.12; max-width:600px; }
+  .intro h1 .script{ font-family:'Alex Brush', cursive; font-weight:400; color:var(--rose); font-size:1.35em; }
+  .intro p.lede{ margin-top:1rem; font-size:0.94rem; line-height:1.7; color:var(--cream); opacity:0.75; max-width:460px; }
+
+  /* ============ LAYOUT ============ */
+  .shop{
+    max-width:1280px; margin:0 auto;
+    padding:clamp(28px,5vw,44px) clamp(20px,6vw,64px) 100px;
+    display:grid; grid-template-columns:1fr; gap:2.2rem;
+  }
+  @media (min-width:960px){
+    .shop{ grid-template-columns:250px 1fr; gap:3rem; align-items:start; }
+  }
+
+  /* ============ FILTERS ============ */
+  .filters{
+    background:var(--panel-2);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:1.5rem;
+  }
+  @media (min-width:960px){
+    .filters{ position:sticky; top:5.6rem; max-height:calc(100vh - 6.6rem); overflow-y:auto; }
+  }
+
+  .filters-head{ display:flex; align-items:center; justify-content:space-between; margin-bottom:0.3rem; }
+  .filters-head h2{ font-family:'Playfair Display', serif; font-weight:500; font-size:1.15rem; color:var(--cream); }
+  .clear-btn{ background:none; border:none; color:var(--rose); font-size:0.74rem; font-weight:600; cursor:pointer; padding:0.2rem 0; opacity:0.85; transition:opacity .2s ease; }
+  .clear-btn:hover{ opacity:1; text-decoration:underline; }
+
+  .filter-group{ padding:1.25rem 0; border-top:1px solid var(--line); }
+  .filters-head + .filter-group{ border-top:none; padding-top:1rem; }
+  .filter-group h3{ font-size:0.78rem; font-weight:600; color:var(--cream); opacity:0.9; margin-bottom:0.9rem; }
+
+  .check-row{ display:flex; align-items:center; justify-content:space-between; gap:0.6rem; padding:0.45rem 0; cursor:pointer; }
+  .check-row input{ position:absolute; opacity:0; width:0; height:0; }
+  .check-mark{ width:17px; height:17px; border-radius:5px; border:1.5px solid rgba(248,239,230,0.4); flex-shrink:0; display:flex; align-items:center; justify-content:center; transition:background .2s ease, border-color .2s ease; }
+  .check-mark svg{ width:10px; height:10px; opacity:0; transition:opacity .15s ease; stroke:var(--dark-btn); }
+  .check-row input:checked + .check-mark{ background:var(--rose); border-color:var(--rose); }
+  .check-row input:checked + .check-mark svg{ opacity:1; }
+  .check-row input:focus-visible + .check-mark{ outline:2px solid var(--rose); outline-offset:2px; }
+  .check-label{ display:flex; align-items:center; gap:0.7rem; font-size:0.86rem; color:var(--cream); opacity:0.92; flex:1; }
+  .check-count{ font-size:0.74rem; color:var(--cream); opacity:0.5; }
+
+  .price-values{ display:flex; justify-content:space-between; font-size:0.82rem; color:var(--rose); font-weight:600; margin-bottom:0.9rem; font-variant-numeric:tabular-nums; }
+  .range-wrap{ position:relative; height:30px; }
+  .range-track{ position:absolute; top:50%; left:0; right:0; height:3px; background:rgba(248,239,230,0.2); border-radius:2px; transform:translateY(-50%); }
+  .range-fill{ position:absolute; top:50%; height:3px; background:var(--rose); border-radius:2px; transform:translateY(-50%); }
+  input[type="range"]{
+    position:absolute; top:0; left:0; width:100%; height:30px;
+    -webkit-appearance:none; appearance:none; background:none; pointer-events:none; margin:0;
+  }
+  input[type="range"]::-webkit-slider-thumb{
+    -webkit-appearance:none; pointer-events:all;
+    width:17px; height:17px; border-radius:50%; background:var(--cream);
+    border:3px solid var(--rose); cursor:pointer; margin-top:0;
+    box-shadow:0 2px 6px rgba(0,0,0,0.35);
+  }
+  input[type="range"]::-moz-range-thumb{
+    pointer-events:all; width:11px; height:11px; border-radius:50%; background:var(--cream);
+    border:3px solid var(--rose); cursor:pointer; box-shadow:0 2px 6px rgba(0,0,0,0.35);
+  }
+  input[type="range"]::-webkit-slider-runnable-track{ background:none; }
+  input[type="range"]::-moz-range-track{ background:none; }
+
+  .swatch-row{ display:flex; gap:0.7rem; }
+  .swatch-btn{ display:flex; align-items:center; gap:0.55rem; background:rgba(248,239,230,0.05); border:1.5px solid var(--line); border-radius:999px; padding:0.5rem 0.9rem 0.5rem 0.5rem; cursor:pointer; transition:border-color .2s ease, background .2s ease; }
+  .swatch-btn:hover{ border-color:rgba(248,239,230,0.35); }
+  .swatch-btn.active{ border-color:var(--rose); background:rgba(226,169,124,0.12); }
+  .swatch-dot{ width:20px; height:20px; border-radius:50%; flex-shrink:0; box-shadow:inset 0 0 0 1px rgba(0,0,0,0.15); }
+  .swatch-dot.dourada{ background:linear-gradient(145deg, #f3d9a8, var(--rose-deep)); }
+  .swatch-dot.prata{ background:linear-gradient(145deg, #f2efe9, #b7b2a6); }
+  .swatch-btn span{ font-size:0.82rem; color:var(--cream); }
+
+  .filters-apply{ display:none; }
+  @media (max-width:959px){
+    .filters-apply{
+      display:block; width:100%; margin-top:0.4rem;
+      background:var(--rose); color:var(--dark-btn); border:none; border-radius:999px;
+      padding:0.85rem; font-size:0.86rem; font-weight:600; cursor:pointer;
+    }
+  }
+
+  /* Backdrop do painel de filtros no mobile — escondido e fora do fluxo em
+     qualquer largura, para nunca virar item do grid .shop no desktop. */
+  .sheet-backdrop{
+    display:none; position:fixed; inset:0; z-index:45; background:rgba(15,9,7,0.6);
+    -webkit-backdrop-filter:blur(2px); backdrop-filter:blur(2px);
+  }
+  .sheet-backdrop.open{ display:block; }
+
+  /* Mobile: filters become a bottom sheet */
+  @media (max-width:959px){
+    .filters{
+      position:fixed; z-index:50; left:0; right:0; bottom:0;
+      border-radius:20px 20px 0 0; max-height:82vh; overflow-y:auto;
+      transform:translateY(110%); transition:transform .32s cubic-bezier(.2,.7,.3,1);
+      box-shadow:0 -20px 50px rgba(0,0,0,0.5);
+    }
+    .filters.open{ transform:translateY(0); }
+  }
+
+  /* ============ TOOLBAR ============ */
+  .toolbar{ display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-bottom:1.3rem; flex-wrap:wrap; }
+  .result-count{ font-size:0.84rem; color:var(--cream); opacity:0.7; }
+  .result-count strong{ color:var(--cream); opacity:1; }
+  .toolbar-right{ display:flex; align-items:center; gap:0.8rem; }
+
+  .filter-toggle{
+    display:none; align-items:center; gap:0.55rem; background:var(--panel-2); border:1px solid var(--line);
+    color:var(--cream); border-radius:999px; padding:0.6rem 1rem; font-size:0.82rem; font-weight:600; cursor:pointer;
+  }
+  .filter-toggle svg{ width:15px; height:15px; }
+  .filter-toggle .count-pill{ background:var(--rose); color:var(--dark-btn); border-radius:50%; width:17px; height:17px; font-size:0.65rem; display:flex; align-items:center; justify-content:center; }
+  @media (max-width:959px){ .filter-toggle{ display:inline-flex; } }
+
+  .sort-select{
+    appearance:none; -webkit-appearance:none;
+    background:var(--panel-2) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23f8efe6" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>') no-repeat right 0.8rem center/12px;
+    border:1px solid var(--line); color:var(--cream); border-radius:999px;
+    padding:0.6rem 2.2rem 0.6rem 1.1rem; font-size:0.82rem; cursor:pointer;
+  }
+
+  /* Active filter chips */
+  .chips{ display:flex; flex-wrap:wrap; gap:0.55rem; margin-bottom:1.3rem; }
+  .chip{ display:inline-flex; align-items:center; gap:0.5rem; background:rgba(226,169,124,0.12); border:1px solid rgba(226,169,124,0.4); color:var(--cream); border-radius:999px; padding:0.4rem 0.5rem 0.4rem 0.85rem; font-size:0.76rem; }
+  .chip button{ background:none; border:none; color:var(--rose); cursor:pointer; display:flex; padding:2px; }
+  .chip button svg{ width:11px; height:11px; }
+  .chip-clear{ background:none; border:none; color:var(--cream); opacity:0.6; font-size:0.76rem; text-decoration:underline; cursor:pointer; padding:0.4rem 0.2rem; }
+  .chip-clear:hover{ opacity:1; }
+
+  /* ============ GRID ============ */
+  .grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:1.1rem; opacity:0; transform:translateY(14px); transition:opacity .5s ease, transform .5s ease; }
+  .grid.ready{ opacity:1; transform:translateY(0); }
+  @media (min-width:640px){ .grid{ grid-template-columns:repeat(3,1fr); gap:1.4rem; } }
+  @media (min-width:1240px){ .grid{ grid-template-columns:repeat(4,1fr); } }
+
+  .card{
+    background:var(--panel-2); border:1px solid var(--line); border-radius:16px; overflow:hidden;
+    display:flex; flex-direction:column; transition:border-color .25s ease, transform .25s ease;
+  }
+  .card:hover{ border-color:rgba(226,169,124,0.45); transform:translateY(-3px); }
+
+  .card-media{ position:relative; aspect-ratio:1/1; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+  .card-media.dourada{ background:radial-gradient(circle at 32% 28%, #4a362c 0%, #241a17 72%); }
+  .card-media.prata{ background:radial-gradient(circle at 32% 28%, #3a332d 0%, #221a16 72%); }
+  .card-media svg{ width:52%; height:52%; transition:transform .4s cubic-bezier(.2,.7,.3,1); }
+  .card:hover .card-media svg{ transform:scale(1.08) rotate(-2deg); }
+  .card-icon.dourada{ stroke:#f0d4a6; }
+  .card-icon.prata{ stroke:#e9e5dc; }
+
+  .card-tag{ position:absolute; top:0.7rem; left:0.7rem; background:var(--rose); color:var(--dark-btn); font-size:0.64rem; font-weight:700; letter-spacing:0.03em; border-radius:999px; padding:0.3rem 0.65rem; }
+  .card-fav{ position:absolute; top:0.6rem; right:0.6rem; width:32px; height:32px; border-radius:50%; background:rgba(20,12,10,0.45); border:none; display:flex; align-items:center; justify-content:center; color:var(--cream); cursor:pointer; -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px); transition:background .2s ease; }
+  .card-fav:hover{ background:rgba(20,12,10,0.7); }
+  .card-fav svg{ width:15px; height:15px; }
+  .card-fav.active svg{ fill:var(--rose); stroke:var(--rose); }
+
+  .card-body{ padding:0.95rem 1rem 1.1rem; display:flex; flex-direction:column; gap:0.35rem; flex:1; }
+  .card-cat{ font-size:0.66rem; letter-spacing:0.08em; color:var(--rose); text-transform:uppercase; opacity:0.9; }
+  .card-name{ font-family:'Playfair Display', serif; font-size:1.02rem; color:var(--cream); line-height:1.3; }
+  .card-meta{ display:flex; align-items:center; gap:0.4rem; margin-top:0.15rem; }
+  .card-meta .dot{ width:11px; height:11px; border-radius:50%; }
+  .card-meta .dot.dourada{ background:linear-gradient(145deg, #f3d9a8, var(--rose-deep)); }
+  .card-meta .dot.prata{ background:linear-gradient(145deg, #f2efe9, #b7b2a6); }
+  .card-meta span{ font-size:0.72rem; color:var(--cream); opacity:0.6; }
+
+  .card-foot{ display:flex; align-items:center; justify-content:space-between; margin-top:0.55rem; gap:0.6rem; }
+  .card-price{ font-family:'Playfair Display', serif; font-size:1.12rem; color:var(--cream); }
+  .card-add{ background:none; border:1.5px solid rgba(248,239,230,0.35); color:var(--cream); border-radius:999px; width:34px; height:34px; display:flex; align-items:center; justify-content:center; cursor:pointer; flex-shrink:0; transition:background .2s ease, border-color .2s ease, transform .2s ease; }
+  .card-add svg{ width:15px; height:15px; }
+  .card-add:hover{ background:var(--rose); border-color:var(--rose); color:var(--dark-btn); transform:scale(1.06); }
+
+  /* ============ EMPTY STATE ============ */
+  .empty{ display:none; flex-direction:column; align-items:center; text-align:center; gap:1rem; padding:4rem 1rem; }
+  .empty.show{ display:flex; }
+  .empty-ic{ width:56px; height:56px; border-radius:50%; border:1.5px solid var(--line); display:flex; align-items:center; justify-content:center; color:var(--rose); }
+  .empty-ic svg{ width:24px; height:24px; }
+  .empty h3{ font-family:'Playfair Display', serif; font-weight:500; font-size:1.3rem; color:var(--cream); }
+  .empty p{ font-size:0.86rem; color:var(--cream); opacity:0.65; max-width:320px; }
+  .empty button{ background:var(--rose); color:var(--dark-btn); border:none; border-radius:999px; padding:0.75rem 1.4rem; font-size:0.82rem; font-weight:600; cursor:pointer; margin-top:0.3rem; }
+
+  /* ============ LOAD MORE ============ */
+  .load-more-wrap{ display:flex; justify-content:center; margin-top:2.6rem; }
+  .load-more{ background:none; border:1.5px solid rgba(248,239,230,0.3); color:var(--cream); border-radius:999px; padding:0.85rem 1.8rem; font-size:0.84rem; font-weight:600; cursor:pointer; display:inline-flex; align-items:center; gap:0.6rem; transition:border-color .2s ease, background .2s ease; }
+  .load-more:hover{ border-color:var(--rose); background:rgba(226,169,124,0.08); }
+  .load-more[hidden]{ display:none; }
+
+  /* ============ TOAST ============ */
+  .toast{
+    position:fixed; left:50%; bottom:1.6rem; transform:translateX(-50%) translateY(20px);
+    background:var(--cream); color:var(--dark-btn); border-radius:999px; padding:0.75rem 1.3rem;
+    font-size:0.82rem; font-weight:600; box-shadow:0 14px 34px rgba(0,0,0,0.4);
+    opacity:0; pointer-events:none; transition:opacity .25s ease, transform .25s ease; z-index:60;
+  }
+  .toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+
+  /* ============ FOOTER ============ */
+  .site-footer{ background:#160f0c; padding:3rem clamp(20px,6vw,64px) 1.6rem; border-top:1px solid var(--line); }
+  .footer-grid{ max-width:1140px; margin:0 auto; display:grid; grid-template-columns:1fr; gap:2.2rem; padding-bottom:2.2rem; border-bottom:1px solid var(--line); }
+  .footer-brand .word{ font-family:'Alex Brush', cursive; font-size:1.9rem; color:var(--cream); display:inline-flex; align-items:flex-start; gap:2px; }
+  .footer-brand .heart{ font-family:'Playfair Display', serif; font-size:0.65rem; margin-top:2px; }
+  .footer-brand p{ margin-top:0.8rem; font-size:0.8rem; color:var(--cream); opacity:0.65; max-width:280px; line-height:1.6; }
+  .footer-col{ display:flex; flex-direction:column; gap:0.7rem; }
+  .footer-col strong{ font-size:0.72rem; letter-spacing:0.15em; color:var(--rose); text-transform:uppercase; margin-bottom:0.3rem; }
+  .footer-col a{ color:var(--cream); opacity:0.75; text-decoration:none; font-size:0.85rem; transition:opacity .2s ease; }
+  .footer-col a:hover{ opacity:1; }
+  .footer-bottom{ max-width:1140px; margin:0 auto; padding-top:1.4rem; font-size:0.72rem; color:var(--cream); opacity:0.55; }
+  @media (min-width:700px){ .footer-grid{ grid-template-columns:1.2fr 1fr 1fr; } }
+
+  @media (prefers-reduced-motion: reduce){
+    .grid, .card, .filters, .card-media svg{ transition:none; }
+  }
+
+  /* Catálogo real: os dados fornecidos não possuem preços. */
+  .price-filter-group{display:none !important;}
+  .card-media{background:#f3ece5 !important;}
+  .product-image{width:100%;height:100%;object-fit:cover;transition:transform .45s cubic-bezier(.2,.7,.3,1);}
+  .card:hover .product-image{transform:scale(1.045);}
+  .product-id{position:absolute;left:.7rem;bottom:.7rem;background:rgba(36,26,23,.82);color:var(--cream);border-radius:999px;padding:.3rem .6rem;font-size:.62rem;font-weight:600;letter-spacing:.04em;backdrop-filter:blur(5px);}
+  .card-arrow{font-size:.72rem;color:var(--rose);font-weight:600;}
+  .card-code{font-size:.72rem;color:var(--cream);opacity:.55;font-weight:600;}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="logo">
+    <span class="word">Sara<span class="heart">♡</span></span>
+    <span class="sub">SEMIJOIAS</span>
+  </div>
+
+  <nav class="main-nav" aria-label="Navegação principal">
+    <a href="sara-semijoias.html">Início</a>
+    <a href="produtos.html" class="active">Produtos</a>
+    <a href="sara-semijoias.html#sobre">Sobre</a>
+    <a href="sara-semijoias.html#depoimentos">Depoimentos</a>
+    <a href="sara-semijoias.html#contato">Contato</a>
+  </nav>
+
+  <div class="header-actions">
+    <button class="icon-btn" aria-label="Buscar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
+    <button class="icon-btn" aria-label="Favoritos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7.5-4.6-10-9.2C.5 8.4 2.4 5 6 5c2 0 3.5 1.1 4.3 2.4C11.1 6.1 12.6 5 14.6 5c3.6 0 5.5 3.4 4 6.8C19.5 16.4 12 21 12 21z"/></svg></button>
+    <button class="icon-btn" aria-label="Carrinho"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="badge">0</span></button>
+    <button class="btn-primary" onclick="window.location.href='produtos.html'">
+      <span class="label">Compre agora</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </button>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobilePanel">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+    </button>
+  </div>
+
+  <nav class="mobile-panel" id="mobilePanel" aria-label="Navegação móvel">
+    <a href="sara-semijoias.html">Início</a>
+    <a href="produtos.html" class="active">Produtos</a>
+    <a href="sara-semijoias.html#sobre">Sobre</a>
+    <a href="sara-semijoias.html#depoimentos">Depoimentos</a>
+    <a href="sara-semijoias.html#contato">Contato</a>
+  </nav>
+</header>
+
+<section class="intro">
+  <div class="intro-inner">
+    <p class="eyebrow">CATÁLOGO COMPLETO</p>
+    <h1>Peças para cada <span class="script">momento seu</span></h1>
+    <p class="lede">Semijoias banhadas a ouro 18k e finalizadas em ródio, escolhidas com o mesmo cuidado de sempre. Filtre por categoria, cor e preço para achar a sua.</p>
+  </div>
+</section>
+
+<div class="shop">
+
+  <div class="sheet-backdrop" id="sheetBackdrop"></div>
+
+  <aside class="filters" id="filtersPanel">
+    <div class="filters-head">
+      <h2>Filtrar</h2>
+      <button class="clear-btn" id="clearFilters">Limpar tudo</button>
+    </div>
+
+    <div class="filter-group">
+      <h3>Categoria</h3>
+      <div id="categoryList"></div>
+    </div>
+
+    <div class="filter-group price-filter-group">
+      <h3>Preço</h3>
+      <div class="price-values"><span id="priceMinLabel">R$ 0</span><span id="priceMaxLabel">R$ 400</span></div>
+      <div class="range-wrap">
+        <div class="range-track"></div>
+        <div class="range-fill" id="rangeFill"></div>
+        <input type="range" id="priceMin" min="0" max="400" step="10" value="0" aria-label="Preço mínimo">
+        <input type="range" id="priceMax" min="0" max="400" step="10" value="400" aria-label="Preço máximo">
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <h3>Cor</h3>
+      <div class="swatch-row" id="colorList">
+        <button class="swatch-btn" data-color="dourada"><span class="swatch-dot dourada"></span><span>Dourada</span></button>
+        <button class="swatch-btn" data-color="prata"><span class="swatch-dot prata"></span><span>Prata</span></button>
+      </div>
+    </div>
+
+    <button class="filters-apply" id="applyFilters">Ver resultados</button>
+  </aside>
+
+  <main>
+    <div class="toolbar">
+      <p class="result-count"><strong id="resultCount">0</strong> produtos encontrados</p>
+      <div class="toolbar-right">
+        <button class="filter-toggle" id="filterToggle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/><circle cx="9" cy="6" r="1.6" fill="currentColor" stroke="none"/><circle cx="15" cy="12" r="1.6" fill="currentColor" stroke="none"/><circle cx="9" cy="18" r="1.6" fill="currentColor" stroke="none"/></svg>
+          Filtros
+          <span class="count-pill" id="filterCountPill" hidden>0</span>
+        </button>
+        <select class="sort-select" id="sortSelect" aria-label="Ordenar por">
+          <option value="relevancia">Relevância</option>
+          <option value="nome">Nome A–Z</option>
+          <option value="id">ID</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="chips" id="chipsRow"></div>
+
+    <div class="grid" id="productGrid"></div>
+
+    <div class="empty" id="emptyState">
+      <div class="empty-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+      <h3>Nenhuma peça encontrada</h3>
+      <p>Não há produtos com essa combinação de filtros. Tente ajustar a categoria, a cor ou a faixa de preço.</p>
+      <button id="emptyClear">Limpar filtros</button>
+    </div>
+
+    <div class="load-more-wrap">
+      <button class="load-more" id="loadMoreBtn" hidden>
+        Mostrar mais peças
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+    </div>
+  </main>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="word">Sara<span class="heart">♡</span></span>
+      <p>Semijoias banhadas a ouro 18k, pensadas para durar e brilhar com você.</p>
+    </div>
+    <nav class="footer-col" aria-label="Navegação do rodapé">
+      <strong>Navegação</strong>
+      <a href="sara-semijoias.html">Início</a>
+      <a href="produtos.html">Produtos</a>
+      <a href="sara-semijoias.html#sobre">Sobre</a>
+      <a href="sara-semijoias.html#depoimentos">Depoimentos</a>
+      <a href="sara-semijoias.html#contato">Contato</a>
+    </nav>
+    <div class="footer-col">
+      <strong>Ajuda</strong>
+      <a href="sara-semijoias.html#contato">Trocas e devoluções</a>
+      <a href="sara-semijoias.html#contato">Pagamento e envio</a>
+      <a href="sara-semijoias.html#contato">Perguntas frequentes</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Sara Semijoias. Todos os direitos reservados.</span>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+
+  /* ============ ÍCONES SVG por categoria ============ */
+  const ICONS = {
+    brincos: `<path d="M12 3a3 3 0 0 1 3 3c0 1.5-1.2 2.6-3 3.5-1.8-.9-3-2-3-3.5a3 3 0 0 1 3-3z"/><path d="M12 9.5v3"/><path d="M8.5 12.5c0 3 1.5 5 3.5 8 2-3 3.5-5 3.5-8"/>`,
+    colares: `<path d="M4 4c0 6 3.6 10 8 10s8-4 8-10"/><circle cx="12" cy="16.5" r="3"/>`,
+    aneis: `<circle cx="12" cy="14" r="6"/><path d="M9.5 8.2 12 4l2.5 4.2"/>`,
+    pulseiras: `<ellipse cx="12" cy="12" rx="8" ry="5.4"/><ellipse cx="12" cy="12" rx="4.2" ry="2.8"/>`
+  };
+
+  const CATEGORY_LABELS = { brincos:'Brincos', colares:'Colares', aneis:'Anéis', pulseiras:'Pulseiras' };
+  const COLOR_LABELS = { dourada:'Dourada', prata:'Prata' };
+
+  /* ============ DADOS DOS PRODUTOS ============ */
+  const PRODUCTS = [{"id":"SJ-001","name":"Brinco Borboleta Colorida","color":"dourada","category":"brincos","images":["SJ-001_Brinco_Borboleta_Colorida_DOURADA_01.jpeg","SJ-001_Brinco_Borboleta_Colorida_DOURADA_02.jpeg"]},{"id":"SJ-002","name":"Brinco Cristal Redondo","color":"prata","category":"brincos","images":["SJ-002_Brinco_Cristal_Redondo_PRATA_01.jpeg"]},{"id":"SJ-003","name":"Brinco Borboleta Cravejada","color":"prata","category":"brincos","images":["SJ-003_Brinco_Borboleta_Cravejada_PRATA_01.jpeg","SJ-003_Brinco_Borboleta_Cravejada_PRATA_02.jpeg","SJ-003_Brinco_Borboleta_Cravejada_PRATA_03.jpeg"]},{"id":"SJ-004","name":"Colar Trio de Pedras Organicas","color":"prata","category":"colares","images":["SJ-004_Colar_Trio_de_Pedras_Organicas_PRATA_01.jpeg","SJ-004_Colar_Trio_de_Pedras_Organicas_PRATA_02.jpeg","SJ-004_Colar_Trio_de_Pedras_Organicas_PRATA_03.jpeg","SJ-004_Colar_Trio_de_Pedras_Organicas_PRATA_04.jpeg"]},{"id":"SJ-005","name":"Brinco Coracao Preto","color":"dourada","category":"brincos","images":["SJ-005_Brinco_Coracao_Preto_DOURADA_01.jpeg"]},{"id":"SJ-006","name":"Brinco Gota Organica","color":"dourada","category":"brincos","images":["SJ-006_Brinco_Gota_Organica_DOURADA_01.jpeg"]},{"id":"SJ-007","name":"Brinco Argola Dupla","color":"prata","category":"brincos","images":["SJ-007_Brinco_Argola_Dupla_PRATA_01.jpeg","SJ-007_Brinco_Argola_Dupla_PRATA_02.jpeg"]},{"id":"SJ-008","name":"Brinco Esfera Texturizada","color":"dourada","category":"brincos","images":["SJ-008_Brinco_Esfera_Texturizada_DOURADA_01.jpeg","SJ-008_Brinco_Esfera_Texturizada_DOURADA_02.jpeg"]},{"id":"SJ-009","name":"Brinco Argola Tubular","color":"dourada","category":"brincos","images":["SJ-009_Brinco_Argola_Tubular_DOURADA_01.jpeg"]},{"id":"SJ-010","name":"Brinco Gota Metalizada","color":"dourada","category":"brincos","images":["SJ-010_Brinco_Gota_Metalizada_DOURADA_01.jpeg"]},{"id":"SJ-011","name":"Brinco Cabochao Dourado","color":"dourada","category":"brincos","images":["SJ-011_Brinco_Cabochao_Dourado_DOURADA_01.jpeg"]},{"id":"SJ-012","name":"Brinco Flor com Perola","color":"dourada","category":"brincos","images":["SJ-012_Brinco_Flor_com_Perola_DOURADA_01.jpeg","SJ-012_Brinco_Flor_com_Perola_DOURADA_02.jpeg"]},{"id":"SJ-013","name":"Brinco Coracao Liso","color":"prata","category":"brincos","images":["SJ-013_Brinco_Coracao_Liso_PRATA_01.jpeg"]},{"id":"SJ-014","name":"Brinco Folhas Cravejadas","color":"dourada","category":"brincos","images":["SJ-014_Brinco_Folhas_Cravejadas_DOURADA_01.jpeg","SJ-014_Brinco_Folhas_Cravejadas_DOURADA_02.jpeg"]},{"id":"SJ-015","name":"Brinco Argola Cravejada","color":"dourada","category":"brincos","images":["SJ-015_Brinco_Argola_Cravejada_DOURADA_01.jpeg"]},{"id":"SJ-016","name":"Brinco No Organico","color":"prata","category":"brincos","images":["SJ-016_Brinco_No_Organico_PRATA_01.jpeg","SJ-016_Brinco_No_Organico_PRATA_02.jpeg","SJ-016_Brinco_No_Organico_PRATA_03.jpeg"]},{"id":"SJ-017","name":"Brinco Disco Texturizado","color":"dourada","category":"brincos","images":["SJ-017_Brinco_Disco_Texturizado_DOURADA_01.jpeg"]},{"id":"SJ-018","name":"Brinco Espiral Duplo","color":"dourada","category":"brincos","images":["SJ-018_Brinco_Espiral_Duplo_DOURADA_01.jpeg","SJ-018_Brinco_Espiral_Duplo_DOURADA_02.jpeg"]},{"id":"SJ-019","name":"Brinco Argola Trabalhada","color":"dourada","category":"brincos","images":["SJ-019_Brinco_Argola_Trabalhada_DOURADA_01.jpeg","SJ-019_Brinco_Argola_Trabalhada_DOURADA_02.jpeg"]},{"id":"SJ-020","name":"Brinco Disco Pontilhado","color":"prata","category":"brincos","images":["SJ-020_Brinco_Disco_Pontilhado_PRATA_01.jpeg"]},{"id":"SJ-021","name":"Brinco Argola Meia Lua","color":"dourada","category":"brincos","images":["SJ-021_Brinco_Argola_Meia_Lua_DOURADA_01.jpeg"]},{"id":"SJ-022","name":"Brinco Flor Cravejada","color":"prata","category":"brincos","images":["SJ-022_Brinco_Flor_Cravejada_PRATA_01.jpeg"]},{"id":"SJ-023","name":"Brinco Coracao","color":"dourada","category":"brincos","images":["SJ-023_Brinco_Coracao_DOURADA_01.jpeg"]},{"id":"SJ-024","name":"Brinco Oval Verde","color":"dourada","category":"brincos","images":["SJ-024_Brinco_Oval_Verde_DOURADA_01.jpeg","SJ-024_Brinco_Oval_Verde_DOURADA_02.jpeg"]},{"id":"SJ-025","name":"Brinco Retangular Geometrico","color":"prata","category":"brincos","images":["SJ-025_Brinco_Retangular_Geometrico_PRATA_01.jpeg"]},{"id":"SJ-026","name":"Brinco Oval Texturizado","color":"dourada","category":"brincos","images":["SJ-026_Brinco_Oval_Texturizado_DOURADA_01.jpeg","SJ-026_Brinco_Oval_Texturizado_DOURADA_02.jpeg"]},{"id":"SJ-027","name":"Brinco Oval Liso Texturizado","color":"dourada","category":"brincos","images":["SJ-027_Brinco_Oval_Liso_Texturizado_DOURADA_01.jpeg","SJ-027_Brinco_Oval_Liso_Texturizado_DOURADA_02.jpeg"]},{"id":"SJ-028","name":"Brinco Argola com Detalhe Central","color":"dourada","category":"brincos","images":["SJ-028_Brinco_Argola_com_Detalhe_Central_DOURADA_01.jpeg"]},{"id":"SJ-029","name":"Brinco Leque Plissado","color":"dourada","category":"brincos","images":["SJ-029_Brinco_Leque_Plissado_DOURADA_01.jpeg","SJ-029_Brinco_Leque_Plissado_DOURADA_02.jpeg"]},{"id":"SJ-030","name":"Brinco Flor Texturizada Pequena","color":"dourada","category":"brincos","images":["SJ-030_Brinco_Flor_Texturizada_Pequena_DOURADA_01.jpeg"]},{"id":"SJ-031","name":"Brinco Duplo Circulo Texturizado","color":"prata","category":"brincos","images":["SJ-031_Brinco_Duplo_Circulo_Texturizado_PRATA_01.jpeg","SJ-031_Brinco_Duplo_Circulo_Texturizado_PRATA_02.jpeg"]},{"id":"SJ-032","name":"Brinco Disco Granulado","color":"dourada","category":"brincos","images":["SJ-032_Brinco_Disco_Granulado_DOURADA_01.jpeg"]},{"id":"SJ-033","name":"Brinco Retangular Geometrico","color":"dourada","category":"brincos","images":["SJ-033_Brinco_Retangular_Geometrico_DOURADA_01.jpeg"]},{"id":"SJ-034","name":"Brinco Disco Floral Texturizado","color":"prata","category":"brincos","images":["SJ-034_Brinco_Disco_Floral_Texturizado_PRATA_01.jpeg","SJ-034_Brinco_Disco_Floral_Texturizado_PRATA_02.jpeg"]},{"id":"SJ-035","name":"Brinco Argolas Entrelaçadas","color":"prata","category":"brincos","images":["SJ-035_Brinco_Argolas_Entrelaoadas_PRATA_01.jpeg","SJ-035_Brinco_Argolas_Entrelaoadas_PRATA_02.jpeg"]},{"id":"SJ-036","name":"Brinco Redondo Preto","color":"dourada","category":"brincos","images":["SJ-036_Brinco_Redondo_Preto_DOURADA_01.jpeg","SJ-036_Brinco_Redondo_Preto_DOURADA_02.jpeg"]},{"id":"SJ-037","name":"Brinco Cristal Azul Pendente","color":"prata","category":"brincos","images":["SJ-037_Brinco_Cristal_Azul_Pendente_PRATA_01.jpeg","SJ-037_Brinco_Cristal_Azul_Pendente_PRATA_02.jpeg"]},{"id":"SJ-038","name":"Brinco Pedra Preta Organica","color":"dourada","category":"brincos","images":["SJ-038_Brinco_Pedra_Preta_Organica_DOURADA_01.jpeg","SJ-038_Brinco_Pedra_Preta_Organica_DOURADA_02.jpeg"]},{"id":"SJ-039","name":"Brinco Folha Preta","color":"dourada","category":"brincos","images":["SJ-039_Brinco_Folha_Preta_DOURADA_01.jpeg","SJ-039_Brinco_Folha_Preta_DOURADA_02.jpeg"]},{"id":"SJ-040","name":"Brinco Flor Metalizada","color":"prata","category":"brincos","images":["SJ-040_Brinco_Flor_Metalizada_PRATA_01.jpeg","SJ-040_Brinco_Flor_Metalizada_PRATA_02.jpeg"]},{"id":"SJ-041","name":"Brinco Argola Torcida","color":"dourada","category":"brincos","images":["SJ-041_Brinco_Argola_Torcida_DOURADA_01.jpeg"]},{"id":"SJ-042","name":"Brinco Leque Radial","color":"dourada","category":"brincos","images":["SJ-042_Brinco_Leque_Radial_DOURADA_01.jpeg","SJ-042_Brinco_Leque_Radial_DOURADA_02.jpeg"]},{"id":"SJ-043","name":"Brinco Argola Texturizada","color":"prata","category":"brincos","images":["SJ-043_Brinco_Argola_Texturizada_PRATA_01.jpeg","SJ-043_Brinco_Argola_Texturizada_PRATA_02.jpeg"]},{"id":"SJ-044","name":"Brinco Flor Dourada Texturizada","color":"dourada","category":"brincos","images":["SJ-044_Brinco_Flor_Dourada_Texturizada_DOURADA_01.jpeg"]},{"id":"SJ-045","name":"Colar Pingente Gota","color":"prata","category":"colares","images":["SJ-045_Colar_Pingente_Gota_PRATA_01.jpeg"]},{"id":"SJ-046","name":"Brinco Flor Leque","color":"dourada","category":"brincos","images":["SJ-046_Brinco_Flor_Leque_DOURADA_01.jpeg"]},{"id":"SJ-047","name":"Brinco Cristal Roxo Pendente","color":"prata","category":"brincos","images":["SJ-047_Brinco_Cristal_Roxo_Pendente_PRATA_01.jpeg"]},{"id":"SJ-048","name":"Brinco Coracao Rosa","color":"dourada","category":"brincos","images":["SJ-048_Brinco_Coracao_Rosa_DOURADA_01.jpeg"]},{"id":"SJ-049","name":"Brinco Retangular Arredondado","color":"dourada","category":"brincos","images":["SJ-049_Brinco_Retangular_Arredondado_DOURADA_01.jpeg"]},{"id":"SJ-050","name":"Brinco Flor com Bolinhas","color":"dourada","category":"brincos","images":["SJ-050_Brinco_Flor_com_Bolinhas_DOURADA_01.jpeg"]},{"id":"SJ-051","name":"Brinco Pedra Redonda Cristal","color":"prata","category":"brincos","images":["SJ-051_Brinco_Pedra_Redonda_Cristal_PRATA_01.jpeg"]},{"id":"SJ-052","name":"Brinco Gota Preta","color":"dourada","category":"brincos","images":["SJ-052_Brinco_Gota_Preta_DOURADA_01.jpeg"]},{"id":"SJ-053","name":"Brinco Laco Texturizado","color":"prata","category":"brincos","images":["SJ-053_Brinco_Laco_Texturizado_PRATA_01.jpeg","SJ-053_Brinco_Laco_Texturizado_PRATA_02.jpeg","SJ-053_Brinco_Laco_Texturizado_PRATA_03.jpeg"]},{"id":"SJ-054","name":"Brinco Duplo Elo","color":"dourada","category":"brincos","images":["SJ-054_Brinco_Duplo_Elo_DOURADA_01.jpeg"]},{"id":"SJ-055","name":"Brinco Trevo Verde","color":"dourada","category":"brincos","images":["SJ-055_Brinco_Trevo_Verde_DOURADA_01.jpeg"]}];
+
+  const PAGE_SIZE = 8;
+  let visibleCount = PAGE_SIZE;
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const initialCategory = (urlParams.get('categoria') || '').toLowerCase();
+  const initialColor = (urlParams.get('cor') || '').toLowerCase();
+
+  const state = { categories:new Set(), colors:new Set(), priceMin:0, priceMax:400, sort:'relevancia' };
+  if (CATEGORY_LABELS[initialCategory]) state.categories.add(initialCategory);
+  if (COLOR_LABELS[initialColor]) state.colors.add(initialColor);
+
+  /* ============ REFERÊNCIAS ============ */
+  const grid = document.getElementById('productGrid');
+  const emptyState = document.getElementById('emptyState');
+  const resultCount = document.getElementById('resultCount');
+  const chipsRow = document.getElementById('chipsRow');
+  const categoryList = document.getElementById('categoryList');
+  const loadMoreBtn = document.getElementById('loadMoreBtn');
+  const toast = document.getElementById('toast');
+
+  /* ============ MONTAR LISTA DE CATEGORIAS COM CONTADORES ============ */
+  function buildCategoryList(){
+    categoryList.innerHTML = Object.keys(CATEGORY_LABELS).map(cat => {
+      const count = PRODUCTS.filter(p => p.category === cat).length;
+      return `
+        <label class="check-row">
+          <input type="checkbox" data-filter="category" value="${cat}">
+          <span class="check-mark"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><polyline points="4 12 9 17 20 6"/></svg></span>
+          <span class="check-label">${CATEGORY_LABELS[cat]}</span>
+          <span class="check-count">${count}</span>
+        </label>`;
+    }).join('');
+  }
+  buildCategoryList();
+  if (initialCategory) {
+    const catInput = categoryList.querySelector(`input[value="${initialCategory}"]`);
+    if (catInput) catInput.checked = true;
+  }
+  if (initialColor) syncSwatch(initialColor, true);
+
+  /* ============ RENDERIZAR UM CARD ============ */
+  function cardTemplate(p){
+    const cover = p.images[0];
+    return `
+      <a class="card" data-id="${p.id}" href="produto.html?id=${encodeURIComponent(p.id)}">
+        <div class="card-media ${p.color}">
+          <img class="product-image" src="semijoias/${encodeURIComponent(cover)}" alt="${p.name} — ${COLOR_LABELS[p.color]}" loading="lazy">
+          <span class="product-id">${p.id}</span>
+          <button class="card-fav" aria-label="Favoritar ${p.name}" data-action="fav" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7.5-4.6-10-9.2C.5 8.4 2.4 5 6 5c2 0 3.5 1.1 4.3 2.4C11.1 6.1 12.6 5 14.6 5c3.6 0 5.5 3.4 4 6.8C19.5 16.4 12 21 12 21z"/></svg>
+          </button>
+        </div>
+        <div class="card-body">
+          <span class="card-cat">${CATEGORY_LABELS[p.category] || 'Semijoia'}</span>
+          <h3 class="card-name">${p.name}</h3>
+          <div class="card-meta"><span class="dot ${p.color}"></span><span>${COLOR_LABELS[p.color]}</span></div>
+          <div class="card-foot"><span class="card-code">ID ${p.id}</span><span class="card-arrow">Ver produto →</span></div>
+        </div>
+      </a>`;
+  }
+
+  /* ============ FILTRAR + ORDENAR ============ */
+  function getFiltered(){
+    let list = PRODUCTS.filter(p => {
+      if (state.categories.size && !state.categories.has(p.category)) return false;
+      if (state.colors.size && !state.colors.has(p.color)) return false;
+      return true;
+    });
+    if (state.sort === 'nome') list = list.slice().sort((a,b)=>a.name.localeCompare(b.name, 'pt-BR'));
+    else if (state.sort === 'id') list = list.slice().sort((a,b)=>a.id.localeCompare(b.id, 'pt-BR', {numeric:true}));
+    return list;
+  }
+
+  /* ============ CHIPS DE FILTROS ATIVOS ============ */
+  function renderChips(){
+    const chips = [];
+    state.categories.forEach(c => chips.push({ type:'category', value:c, label:CATEGORY_LABELS[c] }));
+    state.colors.forEach(c => chips.push({ type:'color', value:c, label:COLOR_LABELS[c] }));
+    if (state.priceMin > 0 || state.priceMax < 400){
+      chips.push({ type:'price', value:'price', label:`R$ ${state.priceMin} – R$ ${state.priceMax}` });
+    }
+    chipsRow.innerHTML = chips.map(c => `
+      <span class="chip" data-type="${c.type}" data-value="${c.value}">
+        ${c.label}
+        <button aria-label="Remover filtro ${c.label}" data-remove-chip>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/></svg>
+        </button>
+      </span>`).join('') + (chips.length ? `<button class="chip-clear" id="chipClearAll">Limpar tudo</button>` : '');
+
+    document.querySelectorAll('[data-remove-chip]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const chip = btn.closest('.chip');
+        const { type, value } = chip.dataset;
+        if (type === 'category') { state.categories.delete(value); syncCheckbox('category', value, false); }
+        if (type === 'color') { state.colors.delete(value); syncSwatch(value, false); }
+        if (type === 'price') { resetPrice(); }
+        render();
+      });
+    });
+    const clearAllBtn = document.getElementById('chipClearAll');
+    if (clearAllBtn) clearAllBtn.addEventListener('click', clearAllFilters);
+  }
+
+  function syncCheckbox(kind, value, checked){
+    const input = categoryList.querySelector(`input[value="${value}"]`);
+    if (input) input.checked = checked;
+  }
+  function syncSwatch(value, active){
+    const btn = document.querySelector(`.swatch-btn[data-color="${value}"]`);
+    if (btn) btn.classList.toggle('active', active);
+  }
+
+  /* ============ CONTADOR DE FILTROS ATIVOS (mobile) ============ */
+  function updateFilterCountPill(){
+    const total = state.categories.size + state.colors.size;
+    const pill = document.getElementById('filterCountPill');
+    pill.hidden = total === 0;
+    pill.textContent = total;
+  }
+
+  /* ============ RENDERIZAÇÃO PRINCIPAL ============ */
+  function render(){
+    const filtered = getFiltered();
+    resultCount.textContent = filtered.length;
+    renderChips();
+    updateFilterCountPill();
+
+    if (!filtered.length){
+      grid.innerHTML = '';
+      grid.classList.remove('ready');
+      emptyState.classList.add('show');
+      loadMoreBtn.hidden = true;
+      return;
+    }
+    emptyState.classList.remove('show');
+
+    const slice = filtered.slice(0, visibleCount);
+    grid.innerHTML = slice.map(cardTemplate).join('');
+    requestAnimationFrame(() => grid.classList.add('ready'));
+
+    loadMoreBtn.hidden = visibleCount >= filtered.length;
+  }
+
+  /* ============ EVENTOS: categorias ============ */
+  categoryList.addEventListener('change', e => {
+    const input = e.target.closest('input[data-filter="category"]');
+    if (!input) return;
+    if (input.checked) state.categories.add(input.value);
+    else state.categories.delete(input.value);
+    visibleCount = PAGE_SIZE;
+    render();
+  });
+
+  /* ============ EVENTOS: cor ============ */
+  document.getElementById('colorList').addEventListener('click', e => {
+    const btn = e.target.closest('.swatch-btn');
+    if (!btn) return;
+    const color = btn.dataset.color;
+    const nowActive = !btn.classList.contains('active');
+    btn.classList.toggle('active');
+    if (nowActive) state.colors.add(color); else state.colors.delete(color);
+    visibleCount = PAGE_SIZE;
+    render();
+  });
+
+  /* ============ EVENTOS: faixa de preço (dual range) ============ */
+  const priceMinInput = document.getElementById('priceMin');
+  const priceMaxInput = document.getElementById('priceMax');
+  const priceMinLabel = document.getElementById('priceMinLabel');
+  const priceMaxLabel = document.getElementById('priceMaxLabel');
+  const rangeFill = document.getElementById('rangeFill');
+  const RANGE_MAX = 400;
+
+  function updateRangeFill(){
+    const minPct = (state.priceMin / RANGE_MAX) * 100;
+    const maxPct = (state.priceMax / RANGE_MAX) * 100;
+    rangeFill.style.left = minPct + '%';
+    rangeFill.style.right = (100 - maxPct) + '%';
+  }
+  function resetPrice(){
+    state.priceMin = 0; state.priceMax = RANGE_MAX;
+    priceMinInput.value = 0; priceMaxInput.value = RANGE_MAX;
+    priceMinLabel.textContent = 'R$ 0';
+    priceMaxLabel.textContent = 'R$ ' + RANGE_MAX;
+    updateRangeFill();
+  }
+  priceMinInput.addEventListener('input', () => {
+    let v = Math.min(+priceMinInput.value, state.priceMax - 10);
+    priceMinInput.value = v;
+    state.priceMin = v;
+    priceMinLabel.textContent = 'R$ ' + v;
+    updateRangeFill();
+  });
+  priceMinInput.addEventListener('change', () => { visibleCount = PAGE_SIZE; render(); });
+  priceMaxInput.addEventListener('input', () => {
+    let v = Math.max(+priceMaxInput.value, state.priceMin + 10);
+    priceMaxInput.value = v;
+    state.priceMax = v;
+    priceMaxLabel.textContent = 'R$ ' + v;
+    updateRangeFill();
+  });
+  priceMaxInput.addEventListener('change', () => { visibleCount = PAGE_SIZE; render(); });
+  updateRangeFill();
+
+  /* ============ ORDENAÇÃO ============ */
+  document.getElementById('sortSelect').addEventListener('change', e => {
+    state.sort = e.target.value;
+    render();
+  });
+
+  /* ============ LIMPAR FILTROS ============ */
+  function clearAllFilters(){
+    state.categories.clear();
+    state.colors.clear();
+    resetPrice();
+    categoryList.querySelectorAll('input').forEach(i => i.checked = false);
+    document.querySelectorAll('.swatch-btn').forEach(b => b.classList.remove('active'));
+    visibleCount = PAGE_SIZE;
+    render();
+  }
+  document.getElementById('clearFilters').addEventListener('click', clearAllFilters);
+  document.getElementById('emptyClear').addEventListener('click', clearAllFilters);
+
+  /* ============ MOSTRAR MAIS ============ */
+  loadMoreBtn.addEventListener('click', () => {
+    visibleCount += PAGE_SIZE;
+    render();
+  });
+
+  /* ============ AÇÕES NO CARD: favoritar / adicionar ============ */
+  let toastTimer;
+  function showToast(msg){
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 2000);
+  }
+  grid.addEventListener('click', e => {
+    const favBtn = e.target.closest('[data-action="fav"]');
+    const addBtn = e.target.closest('[data-action="add"]');
+    if (favBtn){
+      e.preventDefault();
+      e.stopPropagation();
+      favBtn.classList.toggle('active');
+      showToast(favBtn.classList.contains('active') ? 'Adicionado aos favoritos' : 'Removido dos favoritos');
+    }
+    if (addBtn){
+      const name = addBtn.closest('.card').querySelector('.card-name').textContent;
+      showToast(`"${name}" adicionado à sacola`);
+    }
+  });
+
+  /* ============ PAINEL DE FILTROS MOBILE (bottom sheet) ============ */
+  const filtersPanel = document.getElementById('filtersPanel');
+  const sheetBackdrop = document.getElementById('sheetBackdrop');
+  function openSheet(){ filtersPanel.classList.add('open'); sheetBackdrop.classList.add('open'); }
+  function closeSheet(){ filtersPanel.classList.remove('open'); sheetBackdrop.classList.remove('open'); }
+  document.getElementById('filterToggle').addEventListener('click', openSheet);
+  sheetBackdrop.addEventListener('click', closeSheet);
+  document.getElementById('applyFilters').addEventListener('click', closeSheet);
+
+  /* ============ MENU MOBILE (header) ============ */
+  const toggle = document.getElementById('navToggle');
+  const panel = document.getElementById('mobilePanel');
+  toggle.addEventListener('click', () => {
+    const isOpen = panel.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+
+  render();
+})();
+</script>
+
+</body>
+</html>
