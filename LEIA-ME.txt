@@ -1,0 +1,14 @@
+Sara Semijoias — versão final integrada
+
+Arquivos principais:
+- index.html (página inicial)
+- sara-semijoias.html (mesma página inicial, para compatibilidade)
+- produtos.html (catálogo real)
+- produto.html (detalhe do produto)
+- semijoias/ (fotos reais do catálogo)
+
+Links configurados:
+- WhatsApp: +55 (11) 92592-8749
+- Instagram: @sarasemijoias.br
+
+A página inicial foi atualizada para usar fotos reais do catálogo e o texto foi ajustado para usar "Semijoias", sem tratar os produtos como joias.
